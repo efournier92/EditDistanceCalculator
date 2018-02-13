@@ -1,5 +1,5 @@
 {
-  "name": "numberMystic",
+  "name": "",
   "description": "Asks range questions to determine user's number in n amount of tries.",
   "version": "1.1.1",
   "main": "app.js",
