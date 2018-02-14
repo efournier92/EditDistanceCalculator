@@ -1,15 +1,15 @@
 import { mysticCtrl } from './mystic.controller.js';
 
 angular
-  .module(`numberMystic`, [`ngRoute`])
+  .module(`minEditDist`, [`ngRoute`])
   .config([`$routeProvider`, config])
-  .controller(`mysticCtrl`, mysticCtrl);
+  .controller(`minEditDist`, minEditDist);
 
 function config($routeProvider) {
   $routeProvider
     .when(`/`, {
-      templateUrl: `mystic.view.html`,
-      controller: `mysticCtrl`,
+      templateUrl: `minEditDist.view.html`,
+      controller: `minEditDist`,
     })
 }
 
