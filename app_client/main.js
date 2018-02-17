@@ -1,4 +1,4 @@
-import { levenDistCtrl } from './mystic.controller.js';
+import { levenDistCtrl } from './levenDist.controller.js';
 
 angular
   .module(`levenDist`, [`ngRoute`])

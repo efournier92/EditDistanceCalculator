@@ -1,6 +1,6 @@
-const mysticCtrl = function mysticCtrl($scope) {
+const levenDistCtrl = function levenDistCtrl($scope) {
 
 };
 
-export { mysticCtrl }
+export { levenDistCtrl }
 
