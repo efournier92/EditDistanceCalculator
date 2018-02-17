@@ -1,15 +1,15 @@
-import { mysticCtrl } from './mystic.controller.js';
+import { levenDistCtrl } from './mystic.controller.js';
 
 angular
-  .module(`minEditDist`, [`ngRoute`])
+  .module(`levenDist`, [`ngRoute`])
   .config([`$routeProvider`, config])
-  .controller(`minEditDist`, minEditDist);
+  .controller(`levenDistCtrl`, levenDistCtrl);
 
 function config($routeProvider) {
   $routeProvider
     .when(`/`, {
-      templateUrl: `minEditDist.view.html`,
-      controller: `minEditDist`,
+      templateUrl: `levenDist.view.html`,
+      controller: `levenDist`,
     })
 }
 
