@@ -1,6 +1,6 @@
 {
-  "name": "",
-  "description": "Asks range questions to determine user's number in n amount of tries.",
+  "name": "levenDist",
+  "description": "Calculate minimum edit distance between two strings.",
   "version": "1.1.1",
   "main": "app.js",
   "engines": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/efournier92/numbermystic.git"
+    "url": "git+https://github.com/efournier92/levenDist.git"
   },
   "dependencies": {
     "body-parser": "~1.10.2",
