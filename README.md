@@ -3,4 +3,5 @@
 ## Technologies Utilized
 * AngularJS
 * Bootstrap
+* GulpJS
 
