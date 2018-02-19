@@ -8,29 +8,30 @@
     <div class="sub-text-container">
       <div class="form-group row">
         <div class="prompt-text" class="col-sm-12">
-          Please Input a Number Range
+          Please Input Two Strings
         </div>
       </div>
       <div class="row">
-        <div class="col-sm-3">
-          String #1 <input type="number" class="form-control form-control-lg" 
-                               ng-model="knownRange.min">
+        <div class="col-sm-9">
+          <input type="text" class="form-control form-control-lg" 
+                             ng-model="knownRange.min"
+                             placeholder="String #1">
         </div>
       </div>
       <div class="row">
-          <input class="form-control form-control-lg" 
-                 type="number"
-                 ng-model="knownRange.max">
-        </div>
-      </div>
-      <div class="col-sm-12">
-        <button type="button" class="btn big-button btn-success" 
-                              style="width:61%"
-                              ng-click="calcMaxQuestions()">
-          Begin
-        </button>
+        <input type="text" class="form-control form-control-lg" 
+                           ng-model="knownRange.min"
+                           placeholder="String #2">
       </div>
     </div>
+    <div class="col-sm-12">
+      <button type="button" class="btn big-button btn-success" 
+                            style="width:61%"
+                            ng-click="calcMaxQuestions()">
+        Begin
+      </button>
+    </div>
   </div>
+</div>
 
 </div>
