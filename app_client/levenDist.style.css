@@ -28,9 +28,9 @@ b {
 
 #main-container {
   background-color: #65737e;
-  height: 465px;
-  width: 50%;
-  margin-bottom: 6%;
+  height: 80%;
+  width: 80%;
+  margin: 10%;
   line-height: 40%;
   text-align: center;
   border: solid 2px #a7adba;
