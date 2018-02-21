@@ -2,6 +2,7 @@
 A small application for determining the `minimum edit distance` between two string inputs.
 
 ## Technologies Utilized
+* NodeJs
 * AngularJS
 * Bootstrap
 * GulpJS
