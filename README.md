@@ -3,6 +3,7 @@ A small application for determining the `minimum edit distance` between two stri
 
 ## Technologies Utilized
 * NodeJs
+* ExpressJs
 * AngularJS
 * Bootstrap
 * GulpJS
