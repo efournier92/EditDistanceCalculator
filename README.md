@@ -6,5 +6,6 @@ A small application for determining the `minimum edit distance` between two stri
 * ExpressJs
 * AngularJS
 * Bootstrap
+* Babel
 * GulpJS
 
