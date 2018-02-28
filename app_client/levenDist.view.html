@@ -8,13 +8,14 @@
     <div class="sub-text-container">
       <div class="form-group row">
         <div class="prompt-text" class="col-sm-12">
-          Please Input Two Strings
+          Input Two Strings To Compare
         </div>
       </div>
       <div class="row" style="width:100%">
         <div class="col-sm-9" style="width:70%;margin:0 15%">
           <input type="text" class="form-control form-control-lg" 
                              ng-model="string1"
+                             ng-change="calcLevenDist()"
                              placeholder="String #1">
         </div>
       </div>
@@ -22,7 +23,13 @@
         <div class="col-sm-9" style="width:70%;margin:0 15%">
           <input type="text" class="form-control form-control-lg" 
                              ng-model="string2"
+                             ng-change="calcLevenDist()"
                              placeholder="String #2">
+        </div>
+      </div>
+      <div class="row" style=ewidth:100%">
+        <div class="col-sm-9" style="width:70%;margin:0 15%">
+          Minimum Edit Distance: {{levenDist}}
         </div>
       </div>
     </div>

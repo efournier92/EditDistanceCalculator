@@ -9,7 +9,7 @@ function config($routeProvider) {
   $routeProvider
     .when(`/`, {
       templateUrl: `levenDist.view.html`,
-      controller: `levenDist`,
+      controller: `levenDistCtrl`,
     })
 }
 

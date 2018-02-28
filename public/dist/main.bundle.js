@@ -77,7 +77,7 @@ angular.module('levenDist', ['ngRoute']).config(['$routeProvider', config]).cont
 function config($routeProvider) {
   $routeProvider.when('/', {
     templateUrl: 'levenDist.view.html',
-    controller: 'levenDist'
+    controller: 'levenDistCtrl'
   });
 }
 
@@ -91,7 +91,30 @@ function config($routeProvider) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var levenDistCtrl = function levenDistCtrl($scope) {};
+var levenDistCtrl = function levenDistCtrl($scope) {
+
+  $scope.lenString1 = 0;
+  $scope.lenString2 = 0;
+
+  $scope.calcLevenDist = function (string1, string2) {
+    console.log("CHANGED!");
+    var lenString1 = string1.length;
+    var lenString2 = string2.length;
+    var t = [],
+        j = void 0;
+    for (j = 0; j <= lenString2; j++) {
+      t[j] = j;
+    }
+    var i = void 0,
+        u = void 0;
+    for (i = 1; i <= lenString1; i++) {
+      for (u = [i], j = 1; j <= lenString2; j++) {
+        u[j] = string1[i - 1] === string2[j - 1] ? t[j - 1] : Math.min(t[j - 1], t[j], u[j - 1]) + 1;
+      }t = u;
+    }
+    $scope.levenDist = u[lenString2];
+  };
+};
 
 exports.levenDistCtrl = levenDistCtrl;
 
