@@ -4,9 +4,10 @@ const levenDistCtrl = function levenDistCtrl($scope) {
   $scope.string2 = ``;
 
   $scope.calcLevenDist = () => {
+    let j, i, u;
     let lenString1 = $scope.string1.length;
     let lenString2 = $scope.string2.length;
-    let t = [], j;
+    let t = [];
     for (j = 0; j <= lenString2; j++) { 
       t[j] = j; 
     }

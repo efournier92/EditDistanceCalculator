@@ -99,10 +99,9 @@ var levenDistCtrl = function levenDistCtrl($scope) {
   $scope.calcLevenDist = function () {
     var lenString1 = $scope.string1.length;
     var lenString2 = $scope.string2.length;
-    var t = [],
-        j = void 0;
-    for (j = 0; j <= lenString2; j++) {
-      t[j] = j;
+    var t = [];
+    for (var _j = 0; _j <= lenString2; _j++) {
+      t[_j] = _j;
     }
     var i = void 0,
         u = void 0;
