@@ -95,13 +95,16 @@ var levenDistCtrl = function levenDistCtrl($scope) {
 
   $scope.string1 = "";
   $scope.string2 = "";
+  $scope.levenDist = 0;
 
   $scope.calcLevenDist = function () {
     var j = void 0,
         i = void 0,
         u = void 0;
-    var lenString1 = $scope.string1.length ? $scope.string1.length : 0;
-    var lenString2 = $scope.string2.length ? $scope.string2.length : 0;
+    $scope.string1 = $scope.string1.length ? $scope.string1 : "";
+    $scope.string2 = $scope.string2.length ? $scope.string2 : "";
+    var lenString1 = $scope.string1.length;
+    var lenString2 = $scope.string2.length;
     var string2LenArr = [];
     for (j = 0; j <= lenString2; j++) {
       string2LenArr[j] = j;
@@ -112,7 +115,7 @@ var levenDistCtrl = function levenDistCtrl($scope) {
       }
       string2LenArr = u;
     }
-    $scope.levenDist = u[lenString2];
+    $scope.levenDist = u[lenString2] || 0;
   };
 };
 
