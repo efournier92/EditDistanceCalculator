@@ -95,22 +95,27 @@ var levenDistCtrl = function levenDistCtrl($scope) {
 
   $scope.string1 = "";
   $scope.string2 = "";
+  $scope.levenDist = 0;
 
   $scope.calcLevenDist = function () {
+    var j = void 0,
+        i = void 0,
+        u = void 0;
+    $scope.string1 = $scope.string1.length ? $scope.string1 : "";
+    $scope.string2 = $scope.string2.length ? $scope.string2 : "";
     var lenString1 = $scope.string1.length;
     var lenString2 = $scope.string2.length;
-    var t = [];
-    for (var _j = 0; _j <= lenString2; _j++) {
-      t[_j] = _j;
+    var string2LenArr = [];
+    for (j = 0; j <= lenString2; j++) {
+      string2LenArr[j] = j;
     }
-    var i = void 0,
-        u = void 0;
     for (i = 1; i <= lenString1; i++) {
       for (u = [i], j = 1; j <= lenString2; j++) {
-        u[j] = $scope.string1[i - 1] === $scope.string2[j - 1] ? t[j - 1] : Math.min(t[j - 1], t[j], u[j - 1]) + 1;
-      }t = u;
+        u[j] = $scope.string1[i - 1] === $scope.string2[j - 1] ? string2LenArr[j - 1] : Math.min(string2LenArr[j - 1], string2LenArr[j], u[j - 1]) + 1;
+      }
+      string2LenArr = u;
     }
-    $scope.levenDist = u[lenString2];
+    $scope.levenDist = u[lenString2] || 0;
   };
 };
 
