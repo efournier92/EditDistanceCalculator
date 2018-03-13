@@ -12,27 +12,43 @@
         </div>
       </div>
       <div class="row" style="width:100%">
-        <div class="col-sm-9" style="width:70%;margin:0 15%">
-          <input type="text" class="form-control form-control-lg" 
-                             ng-model="string1"
-                             ng-change="calcLevenDist()"
-                             placeholder="String #1">
+        <div class="row" style="width:50%">
+          <div class="col-sm-9" style="width:90%;margin:0 15%">
+            <input type="text" class="form-control form-control-lg" 
+                              ng-model="string1"
+                              ng-change="spellCheck(string1)"
+                              placeholder="String #1">
+          </div>
+          <div class="col-sm-9" style="width:90%;margin:20px 15%">
+            Best Guess: 
+          </div>
+          <div class="col-sm-9" style="width:90%;margin-top:20px;background-color: white; color: black;">
+            <div style="margin-top: 20px" ng-repeat="bestMatch in bestMatches">
+              {{bestMatch}}
+           </div>
+          </div>
         </div>
       </div>
-      <div class="row" style="width:100%">
-        <div class="col-sm-9" style="width:70%;margin:0 15%">
-          <input type="text" class="form-control form-control-lg" 
-                             ng-model="string2"
-                             ng-change="calcLevenDist()"
-                             placeholder="String #2">
-        </div>
-      </div>
-      <div class="row" style=ewidth:100%">
-        <div class="col-sm-9" style="width:70%;margin:0 15%">
-          Minimum Edit Distance: {{levenDist}}
-        </div>
-      </div>
-    </div>
-  </div>
+
+      <!-- <div class="row" style="width:100%"> -->
+      <!--   <div class="col-sm-9" style="width:70%;margin:0 15%"> -->
+      <!--     Best Guess: {{bestMatch}} -->
+      <!--   </div> -->
+      <!-- </div> -->
+      <!-- <div class="row" style="width:100%"> -->
+      <!--   <div class="col-sm-9" style="width:70%;margin:0 15%"> -->
+      <!--     <input type="text" class="form-control form-control-lg" --> 
+      <!--                        ng-model="string2" -->
+      <!--                        ng-change="calcLevenDist()" -->
+      <!--                        placeholder="String #2"> -->
+      <!--   </div> -->
+      <!-- </div> -->
+      <!-- <div class="row" style="width:100%"> -->
+      <!--   <div class="col-sm-9" style="width:70%;margin:0 15%"> -->
+      <!--     Minimum Edit Distance: {{levenDist}} -->
+      <!--   </div> -->
+      <!-- </div> -->
+    <!-- </div> -->
+  <!-- </div> -->
 </div>
 

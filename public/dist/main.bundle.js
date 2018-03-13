@@ -98,6 +98,7 @@ var _words = __webpack_require__(2);
 var levenDistCtrl = function levenDistCtrl($scope) {
 
   $scope.englishWords = _words.englishWords;
+  $scope.bestMatches = ['test1', 'test2', 'test3', 'test4', 'test5'];
 
   $scope.calcLevenDistFly = function (str1, str2) {
     // reset count variables
@@ -134,8 +135,8 @@ var levenDistCtrl = function levenDistCtrl($scope) {
         bestMatchDist = wordDist;
       }
     }
-    console.log('Best Match: ', bestMatch);
-    return bestMatch;
+    console.log('Best Match: ', bestMatch, bestMatchDist);
+    $scope.bestMatch = bestMatch;
   };
 
   // initialize default values

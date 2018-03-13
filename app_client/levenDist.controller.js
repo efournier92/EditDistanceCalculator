@@ -3,6 +3,7 @@ import { englishWords } from './dictionaries/words.js';
 const levenDistCtrl = function levenDistCtrl($scope) {
   
   $scope.englishWords = englishWords;
+  $scope.bestMatches = [`test1`,`test2`,`test3`,`test4`,`test5`];
   
   $scope.calcLevenDistFly = (str1, str2) => {
     // reset count variables
@@ -29,7 +30,6 @@ const levenDistCtrl = function levenDistCtrl($scope) {
     return finArr[lenString2] || 0;
   }
 
-
   $scope.spellCheck = (wordToCheck) => {
     let i;
     let bestMatchDist = 100000;
@@ -41,8 +41,8 @@ const levenDistCtrl = function levenDistCtrl($scope) {
         bestMatchDist = wordDist;
       }
     }
-    console.log(`Best Match: `, bestMatch)
-    return bestMatch;
+    console.log(`Best Match: `, bestMatch, bestMatchDist)
+    $scope.bestMatch = bestMatch;
   }
 
   // initialize default values
