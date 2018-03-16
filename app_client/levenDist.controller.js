@@ -1,6 +1,6 @@
 import { englishWords } from './dictionaries/words.js';
 
-const levenDistCtrl = function levenDistCtrl($scope) {
+const levenDistCtrl = function levenDistCtrl($scope, $windws) {
   
   $scope.englishWords = englishWords;
   $scope.bestMatches = [`test1`,`test2`,`test3`,`test4`,`test5`];

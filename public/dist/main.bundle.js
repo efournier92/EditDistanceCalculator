@@ -95,7 +95,7 @@ exports.levenDistCtrl = undefined;
 
 var _words = __webpack_require__(2);
 
-var levenDistCtrl = function levenDistCtrl($scope) {
+var levenDistCtrl = function levenDistCtrl($scope, $windws) {
 
   $scope.englishWords = _words.englishWords;
   $scope.bestMatches = ['test1', 'test2', 'test3', 'test4', 'test5'];
