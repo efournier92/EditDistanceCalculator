@@ -1,6 +1,6 @@
 import { englishWords } from './dictionaries/words.js';
 
-const levenDistCtrl = function levenDistCtrl($scope, $windws) {
+const levenDistCtrl = function levenDistCtrl($scope, $window) {
   
   $scope.englishWords = englishWords;
   $scope.bestMatches = [`test1`,`test2`,`test3`,`test4`,`test5`];
@@ -76,13 +76,20 @@ const levenDistCtrl = function levenDistCtrl($scope, $windws) {
     $scope.levenDist = finArr[lenString2] || 0;
   }
 
+  $scope.activeTab = 0;
+
 
   $scope.spellCheck(`power`);
 
 $scope.tabs = [
-    { title:'Dynamic Title 1', content:'Dynamic content 1' },
-    { title:'Dynamic Title 2', content:'Dynamic content 2', disabled: true }
+    { title:'Word 1', content:'Dynamic content 1', index:'1' },
+    { title:'Word 2', content:'Dynamic content 2', index:'2' },
+    { title:'Word 3', content:'Dynamic content 3', index:'3' },
+    { title:'Word 4', content:'Dynamic content 4', index:'4' },
+    { title:'Word 5', content:'Dynamic content 5', index:'5' }
   ];
+
+  $scope.activePill = $scope.tabs[0];
 
   $scope.alertMe = function() {
     setTimeout(function() {
