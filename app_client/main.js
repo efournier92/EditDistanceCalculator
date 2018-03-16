@@ -1,7 +1,7 @@
 import { levenDistCtrl } from './levenDist.controller.js';
 
 angular
-  .module(`levenDist`, [`ngRoute`])
+  .module(`levenDist`, [`ngRoute`, `ui.bootstrap`])
   .config([`$routeProvider`, config])
   .controller(`levenDistCtrl`, levenDistCtrl);
 

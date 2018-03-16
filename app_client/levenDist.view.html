@@ -3,35 +3,9 @@
   <h1 id="header">
     Levenshtein Distance Calculator 
   </h1>
-
-  <div class="main-sub-container">
-    <div class="sub-text-container">
-      <div class="form-group row">
-        <div class="prompt-text" class="col-sm-12">
-          Input Two Strings To Compare
-        </div>
-      </div>
-      <div class="row" style="width:100%">
-        <div class="row" style="width:50%">
-          <div class="col-sm-9" style="width:90%;margin:0 15%">
-            <input type="text" class="form-control form-control-lg" 
-                              ng-model="string1"
-                              ng-change="spellCheck(string1)"
-                              placeholder="String #1">
-          </div>
-          <div class="col-sm-9" style="width:90%;margin:20px 15%">
-            Best Guess: 
-          </div>
-          <div class="col-sm-9" style="width:90%;margin-top:20px;background-color: white; color: black;">
-            <div style="margin-top: 20px" ng-repeat="bestMatch in bestMatches">
-              {{bestMatch}}
-           </div>
-          </div>
-        </div>
-      </div>
-
  <div  class="col-sm-6">
-                <hr/>
+        <h3>Left Tabs</h3>
+        <hr/>
         <div class="col-xs-3"> <!-- required for floating -->
           <!-- Nav tabs -->
           <ul class="nav nav-tabs tabs-left sideways">
@@ -55,25 +29,56 @@
         <div class="clearfix"></div>
 
       </div>
-      <!-- <div class="row" style="width:100%"> -->
-      <!--   <div class="col-sm-9" style="width:70%;margin:0 15%"> -->
-      <!--     Best Guess: {{bestMatch}} -->
-      <!--   </div> -->
-      <!-- </div> -->
-      <!-- <div class="row" style="width:100%"> -->
-      <!--   <div class="col-sm-9" style="width:70%;margin:0 15%"> -->
-      <!--     <input type="text" class="form-control form-control-lg" --> 
-      <!--                        ng-model="string2" -->
-      <!--                        ng-change="calcLevenDist()" -->
-      <!--                        placeholder="String #2"> -->
-      <!--   </div> -->
-      <!-- </div> -->
-      <!-- <div class="row" style="width:100%"> -->
-      <!--   <div class="col-sm-9" style="width:70%;margin:0 15%"> -->
-      <!--     Minimum Edit Distance: {{levenDist}} -->
-      <!--   </div> -->
-      <!-- </div> -->
-    <!-- </div> -->
+
+      <div  class="col-sm-6">
+        <h3>Right Tabs</h3>
+        <hr/>
+        <div class="col-xs-9">
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div class="tab-pane active" id="home-vr">Home Tab.</div>
+            <div class="tab-pane" id="profile-vr">Profile Tab.</div>
+            <div class="tab-pane" id="messages-vr">Messages Tab.</div>
+            <div class="tab-pane" id="settings-vr">Settings Tab.</div>
+          </div>
+        </div>
+
+        <div class="col-xs-3"> <!-- required for floating -->
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs tabs-right sideways">
+            <li class="active"><a href="#home-vr" data-toggle="tab">Home</a></li>
+            <li><a href="#profile-vr" data-toggle="tab">Profile</a></li>
+            <li><a href="#messages-vr" data-toggle="tab">Messages</a></li>
+            <li><a href="#settings-vr" data-toggle="tab">Settings</a></li>
+          </ul>
+        </div>
+  <!-- <div class="main-sub-container"> -->
+  <!--   <div class="sub-text-container"> -->
+  <!--     <div class="form-group row"> -->
+  <!--       <div class="prompt-text" class="col-sm-12"> -->
+  <!--         Input Two Strings To Compare -->
+  <!--       </div> -->
+  <!--     </div> -->
+  <!--     <div class="row" style="width:100%"> -->
+  <!--       <div class="row" style="width:50%"> -->
+  <!--         <div class="col-sm-9" style="width:90%;margin:0 15%"> -->
+  <!--           <input type="text" class="form-control form-control-lg" --> 
+  <!--           ng-model="string1" -->
+  <!--           ng-change="spellCheck(string1)" -->
+  <!--           placeholder="String #1"> -->
+  <!--         </div> -->
+  <!--         <div class="col-sm-9" style="width:90%;margin:20px 15%"> -->
+  <!--           <hr/> -->
+  <!--           <div class="col-xs-3"> <1!-- required for floating --1> -->
+  <!--             <1!-- Nav tabs --1> -->
+  <!--             <ul class="nav nav-tabs tabs-left sideways"> -->
+  <!--               <li><a class="tab" ng-repeat="bestMatch in bestMatches">{{bestMatch}}</a></li> -->
+  <!--             </ul> -->
+  <!--           </div> -->
+  <!--         </div> -->
+  <!--       </div> -->
+  <!--     </div> -->
+  <!--   </div> -->
   <!-- </div> -->
 </div>
 

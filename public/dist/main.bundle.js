@@ -72,7 +72,7 @@
 
 var _levenDistController = __webpack_require__(1);
 
-angular.module('levenDist', ['ngRoute']).config(['$routeProvider', config]).controller('levenDistCtrl', _levenDistController.levenDistCtrl);
+angular.module('levenDist', ['ngRoute', 'ui.bootstrap']).config(['$routeProvider', config]).controller('levenDistCtrl', _levenDistController.levenDistCtrl);
 
 function config($routeProvider) {
   $routeProvider.when('/', {
