@@ -173,7 +173,7 @@ var levenDistCtrl = function levenDistCtrl($scope, $window) {
 
   $scope.spellCheck('power');
 
-  $scope.tabs = [{ title: 'Word 1', content: 'Dynamic content 1', index: '1' }, { title: 'Word 2', content: 'Dynamic content 2', index: '2' }, { title: 'Word 3', content: 'Dynamic content 3', index: '3' }, { title: 'Word 4', content: 'Dynamic content 4', index: '4' }, { title: 'Word 5', content: 'Dynamic content 5', index: '5' }];
+  $scope.tabs = [{ title: 'Word 1', content: 'Dynamic content 1', index: '1' }, { title: 'Word 2', content: 'Dynamic content 2', index: '2' }, { title: 'Word 3', content: 'Dynamic content 3', index: '3' }, { title: 'Word 4', content: 'Dynamic content 4', index: '4' }];
 
   $scope.activePill = $scope.tabs[0];
 
