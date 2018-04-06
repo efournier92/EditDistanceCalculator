@@ -1,4 +1,4 @@
-import { englishWords } from './dictionaries/words.js';
+import { englishWords } from './dictionaries/webstersDict.json';
 
 const levenDistCtrl = function levenDistCtrl($scope, $window) {
   

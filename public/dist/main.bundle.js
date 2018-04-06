@@ -167,11 +167,10 @@ var levenDistCtrl = function levenDistCtrl($scope, $window) {
       string2LenArr = finArr;
     }
     $scope.levenDist = finArr[lenString2] || 0;
+    $scope.spellCheck($scope.string1);
   };
 
   $scope.activeTab = 0;
-
-  $scope.spellCheck('power');
 
   $scope.tabs = [{ title: 'Word 1', content: 'Dynamic content 1', index: '1' }, { title: 'Word 2', content: 'Dynamic content 2', index: '2' }, { title: 'Word 3', content: 'Dynamic content 3', index: '3' }, { title: 'Word 4', content: 'Dynamic content 4', index: '4' }];
 
