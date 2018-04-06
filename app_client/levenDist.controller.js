@@ -8,7 +8,9 @@ const levenDistCtrl = function levenDistCtrl($scope, $window) {
   function updateMatches(newWord) {
     $scope.bestMatches.forEach( (bestMatchWord, index) => 
       if (newWord.editDistance <= bestMatchWord.editDistance) {
-        bestMatches.splice( 1, 0, "baz"); 
+        bestMatches.splice(index, 0, bestMatchWord); 
+        if (bestMatches.length > 4) bestMatches.pop();
+        break;
       }
     )
   }
