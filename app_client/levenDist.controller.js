@@ -1,9 +1,17 @@
-import { englishWords } from './dictionaries/webstersDict.json';
+import englishWords from './dictionaries/dictionary.json';
 
 const levenDistCtrl = function levenDistCtrl($scope, $window) {
   
   $scope.englishWords = englishWords;
-  $scope.bestMatches = [`test1`,`test2`,`test3`,`test4`,`test5`];
+  $scope.bestMatches = [];
+
+  function updateMatches(newWord) {
+    $scope.bestMatches.forEach( (bestMatchWord, index) => 
+      if (newWord.editDistance <= bestMatchWord.editDistance) {
+        bestMatches.splice( 1, 0, "baz"); 
+      }
+    )
+  }
   
   $scope.calcLevenDistFly = (str1, str2) => {
     // reset count variables
@@ -14,8 +22,8 @@ const levenDistCtrl = function levenDistCtrl($scope, $window) {
     // $scope.string1 = $scope.string1.length ? $scope.string1 : ``;
     // $scope.string2 = $scope.string2.length ? $scope.string2 : ``;
     let lenString1 = str1.length;
-    let lenString2 = str2.length;
-    for (j = 0; j <= lenString2; j++) { 
+    let lenString2 = str2.length || 0;
+    for (j = 0; j <= lenString2; j++) {
       string2LenArr[j] = j; 
     }
     for (i = 1; i <= lenString1; i++) {
@@ -34,14 +42,16 @@ const levenDistCtrl = function levenDistCtrl($scope, $window) {
     let i;
     let bestMatchDist = 100000;
     let bestMatch = ``;
-    for (i = 0; i <= ($scope.englishWords.length - 1); i++) {
-      let wordDist = $scope.calcLevenDistFly(wordToCheck, $scope.englishWords[i]);
+    for (var word in $scope.englishWords) {
+      let wordDist = $scope.calcLevenDistFly(wordToCheck, word);
       if (wordDist < bestMatchDist) {
-        bestMatch = $scope.englishWords[i];
+        bestMatch = word;
         bestMatchDist = wordDist;
       }
     }
     console.log(`Best Match: `, bestMatch, bestMatchDist)
+    let bestMatchDef = $scope.englishWords[bestMatch];
+    console.log(`DEF`, bestMatchDef);
     $scope.bestMatch = bestMatch;
   }
 
