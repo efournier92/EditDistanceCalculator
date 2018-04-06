@@ -58,5 +58,5 @@ gulp.task('watch', function () {
 });
 
 // Default Task
-gulp.task('default', ['transpile-es6', 'browser-sync', 'watch']);
+gulp.task('default', ['transpile-es6', 'watch']);
 

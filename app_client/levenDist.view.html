@@ -4,38 +4,45 @@
     Levenshtein Distance Calculator
   </h1>
 
-  <div class="main-sub-container">
-    <div class="sub-text-container" style="margin-top:140px;">
+  <div class="main-sub-container" style="height:100%">
+    <div class="sub-text-container">
       <div class="row">
         <div class="prompt-text" class="col-sm-12">
           Input Two Strings To Compare
         </div>
       </div>
       <div class="row" style="width:100%">
-        <div class="col-sm-5 col-sm-offset-1 align-middle">
+        <div class="col-sm-6">
           <input type="text" class="form-control form-control-lg" 
+                             style="background-color:#eee8d5"
                              ng-model="string1"
+                             ng-change="calcLevenDist()"
                              placeholder="String #1">
 
         </div>
-        <div class="col-sm-5">
+        <div class="col-sm-6">
           <input class="form-control form-control-lg" 
+                 style="background-color:#eee8d5"
                  type="text"
                  ng-model="string2"
+                 ng-change="calcLevenDist()"
                  placeholder="String #2">
         </div>
       </div>
+      <div class="row" style="width:100%;font-size:20px;">
+        <b>Edit Distance</b>: {{levenDist}}
+      </div>
       <div class="row" style="width:100%">
-        <div class="col-sm-5 col-sm-offset-1 align-middle">
+        <div class="col-sm-6">
           <uib-tabset active="active">
             <uib-tab ng-repeat="tab in tabs track by $index" index="$index" heading="tab.title">
-              <div class="row" style="width:100%;background-color:white;color:black;height:200px">
+              <div class="row" style="width:100%;background-color:#eee8d5;color:black;height:200px" style="background-color:#eee8d5">
                 {{tab.content}}
               </div>
             </uib-tab>
           </uib-tabset>
         </div>
-        <div class="col-sm-5">
+        <div class="col-sm-6">
           <uib-tabset active="active">
             <uib-tab ng-repeat="tab in tabs track by $index" index="$index" heading="tab.title">
               <div class="row" style="width:100%;background-color:white;color:black;height:200px;text-align:left;">
