@@ -102,7 +102,19 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var levenDistCtrl = function levenDistCtrl($scope, $window) {
 
   $scope.englishWords = _dictionary2.default;
-  $scope.bestMatches = ['test1', 'test2', 'test3', 'test4', 'test5'];
+  $scope.bestMatches = [];
+
+  function updateMatches(newWord) {
+    $scope.bestMatches.forEach(function (bestMatchWord, index) {
+      if (newWord.editDistance <= bestMatchWord.editDistance) {
+        bestMatches.splice(index, 0, bestMatchWord);
+        if (bestMatches.length > 4) {
+          bestMatches.pop();
+        };
+        return;
+      }
+    });
+  }
 
   $scope.calcLevenDistFly = function (str1, str2) {
     // reset count variables
@@ -127,6 +139,31 @@ var levenDistCtrl = function levenDistCtrl($scope, $window) {
     }
     return finArr[lenString2] || 0;
   };
+  // recalculate each time either string changes
+  $scope.calcLevenDist = function () {
+    // reset count variables
+    var j = void 0,
+        i = void 0;
+    // reset edit distance arrays
+    var string2LenArr = [],
+        finArr = void 0;
+    // update string lengths
+    $scope.string1 = $scope.string1.length ? $scope.string1 : '';
+    $scope.string2 = $scope.string2.length ? $scope.string2 : '';
+    var lenString1 = $scope.string1.length;
+    var lenString2 = $scope.string2.length;
+    for (j = 0; j <= lenString2; j++) {
+      string2LenArr[j] = j;
+    }
+    for (i = 1; i <= lenString1; i++) {
+      for (finArr = [i], j = 1; j <= lenString2; j++) {
+        finArr[j] = $scope.string1[i - 1] === $scope.string2[j - 1] ? string2LenArr[j - 1] : Math.min(string2LenArr[j - 1], string2LenArr[j], finArr[j - 1]) + 1;
+      }
+      string2LenArr = finArr;
+    }
+    $scope.levenDist = finArr[lenString2] || 0;
+    $scope.spellCheck($scope.string1);
+  };
 
   $scope.spellCheck = function (wordToCheck) {
     var i = void 0;
@@ -143,6 +180,7 @@ var levenDistCtrl = function levenDistCtrl($scope, $window) {
     var bestMatchDef = $scope.englishWords[bestMatch];
     console.log('DEF', bestMatchDef);
     $scope.bestMatch = bestMatch;
+    updateMatches(bestMatch);
   };
 
   // initialize default values
