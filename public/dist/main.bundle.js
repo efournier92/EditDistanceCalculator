@@ -103,18 +103,41 @@ var levenDistCtrl = function levenDistCtrl($scope, $window) {
 
   $scope.englishWords = _dictionary2.default;
   $scope.bestMatches = [];
+  $scope.matchWords1 = [];
 
   function updateMatches(newWord) {
-    $scope.bestMatches.forEach(function (bestMatchWord, index) {
-      if (newWord.editDistance <= bestMatchWord.editDistance) {
-        bestMatches.splice(index, 0, bestMatchWord);
-        if (bestMatches.length > 4) {
-          bestMatches.pop();
-        };
-        return;
-      }
-    });
+    if ($scope.bestMatches.length <= 4) {
+      $scope.bestMatches.push(newWord);
+    } else {
+      $scope.bestMatches.forEach(function (bestMatchWord, index) {
+        if (newWord.editDistance <= bestMatchWord.editDistance) {
+          bestMatches.splice(index, 0, bestMatchWord);
+          if (bestMatches.length > 4) {
+            bestMatches.pop();
+          };
+          return;
+        }
+      });
+    }
   }
+
+  $scope.spellCheck = function (wordToCheck) {
+    var i = void 0;
+    var bestMatchDist = 100000;
+    var bestMatch = '';
+    for (var word in $scope.englishWords) {
+      var wordDist = $scope.calcLevenDistFly(wordToCheck, word);
+      if (wordDist < bestMatchDist) {
+        bestMatch = word;
+        bestMatchDist = wordDist;
+      }
+    }
+    console.log('Best Match: ', bestMatch, bestMatchDist);
+    var bestMatchDef = $scope.englishWords[bestMatch];
+    console.log('DEF', bestMatchDef);
+    $scope.bestMatch = bestMatch;
+    updateMatches(bestMatch);
+  };
 
   $scope.calcLevenDistFly = function (str1, str2) {
     // reset count variables
