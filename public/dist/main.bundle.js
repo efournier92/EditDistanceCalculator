@@ -99,159 +99,90 @@ var _dictionary2 = _interopRequireDefault(_dictionary);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 var levenDistCtrl = function levenDistCtrl($scope, $window) {
 
-  $scope.englishWords = _dictionary2.default;
-  $scope.bestMatches = [];
-  $scope.matchWords1 = [];
-
-  function updateMatches(newWord) {
-    if ($scope.bestMatches.length <= 4) {
-      $scope.bestMatches.push(newWord);
-    } else {
-      $scope.bestMatches.forEach(function (bestMatchWord, index) {
-        if (newWord.editDistance <= bestMatchWord.editDistance) {
-          bestMatches.splice(index, 0, bestMatchWord);
-          if (bestMatches.length > 4) {
-            bestMatches.pop();
-          };
-          return;
-        }
-      });
-    }
-  }
-
-  $scope.spellCheck = function (wordToCheck) {
-    var i = void 0;
-    var bestMatchDist = 100000;
-    var bestMatch = '';
-    for (var word in $scope.englishWords) {
-      var wordDist = $scope.calcLevenDistFly(wordToCheck, word);
-      if (wordDist < bestMatchDist) {
-        bestMatch = word;
-        bestMatchDist = wordDist;
-      }
-    }
-    console.log('Best Match: ', bestMatch, bestMatchDist);
-    var bestMatchDef = $scope.englishWords[bestMatch];
-    console.log('DEF', bestMatchDef);
-    $scope.bestMatch = bestMatch;
-    updateMatches(bestMatch);
+  // initialize default values
+  $scope.reset = function () {
+    $scope.levenDist = 0;
+    $scope.string1 = '';
+    $scope.string2 = '';
+    $scope.matchWords1 = [];
+    $scope.matchWords2 = [];
+    $scope.englishDict = _dictionary2.default;
   };
 
-  $scope.calcLevenDistFly = function (str1, str2) {
-    // reset count variables
-    var j = void 0,
-        i = void 0;
-    // reset edit distance arrays
-    var string2LenArr = [],
-        finArr = void 0;
-    // update string lengths
-    // $scope.string1 = $scope.string1.length ? $scope.string1 : ``;
-    // $scope.string2 = $scope.string2.length ? $scope.string2 : ``;
-    var lenString1 = str1.length;
-    var lenString2 = str2.length || 0;
+  $scope.reset();
+
+  var Word = function Word(word, def, levenDist) {
+    _classCallCheck(this, Word);
+
+    this.word = word;
+    this.def = def;
+    this.levenDist = levenDist;
+  };
+
+  // { title:'Word 1', content:'Dynamic content 1', index:'1' },
+
+  // recalculate each time either string changes
+
+
+  $scope.calcLevenDist = function (str1, str2) {
+    // reset variables
+    var j = 0;
+    var i = 0;
+    var string2LenArr = [];
+    var finArr = [];
+    var lenString1 = str1 ? str1.length : 0;
+    var lenString2 = str2 ? str2.length : 0;
+
     for (j = 0; j <= lenString2; j++) {
       string2LenArr[j] = j;
     }
+
     for (i = 1; i <= lenString1; i++) {
       for (finArr = [i], j = 1; j <= lenString2; j++) {
         finArr[j] = str1[i - 1] === str2[j - 1] ? string2LenArr[j - 1] : Math.min(string2LenArr[j - 1], string2LenArr[j], finArr[j - 1]) + 1;
       }
       string2LenArr = finArr;
     }
-    return finArr[lenString2] || 0;
-  };
-  // recalculate each time either string changes
-  $scope.calcLevenDist = function () {
-    // reset count variables
-    var j = void 0,
-        i = void 0;
-    // reset edit distance arrays
-    var string2LenArr = [],
-        finArr = void 0;
-    // update string lengths
-    $scope.string1 = $scope.string1.length ? $scope.string1 : '';
-    $scope.string2 = $scope.string2.length ? $scope.string2 : '';
-    var lenString1 = $scope.string1.length;
-    var lenString2 = $scope.string2.length;
-    for (j = 0; j <= lenString2; j++) {
-      string2LenArr[j] = j;
-    }
-    for (i = 1; i <= lenString1; i++) {
-      for (finArr = [i], j = 1; j <= lenString2; j++) {
-        finArr[j] = $scope.string1[i - 1] === $scope.string2[j - 1] ? string2LenArr[j - 1] : Math.min(string2LenArr[j - 1], string2LenArr[j], finArr[j - 1]) + 1;
-      }
-      string2LenArr = finArr;
-    }
     $scope.levenDist = finArr[lenString2] || 0;
-    $scope.spellCheck($scope.string1);
+    return finArr[lenString2] || 0;
   };
 
   $scope.spellCheck = function (wordToCheck) {
     var i = void 0;
     var bestMatchDist = 100000;
     var bestMatch = '';
-    for (var word in $scope.englishWords) {
-      var wordDist = $scope.calcLevenDistFly(wordToCheck, word);
-      if (wordDist < bestMatchDist) {
-        bestMatch = word;
-        bestMatchDist = wordDist;
-      }
+    for (var word in $scope.englishDict) {
+      var wordDist = $scope.calcLevenDist(wordToCheck, word);
+      var newWord = new Word(word, $scope.englishDict[word], wordDist);
+      updateMatches(newWord);
     }
-    console.log('Best Match: ', bestMatch, bestMatchDist);
-    var bestMatchDef = $scope.englishWords[bestMatch];
-    console.log('DEF', bestMatchDef);
-    $scope.bestMatch = bestMatch;
-    updateMatches(bestMatch);
+    // console.log(`Best Match: `, bestMatch, bestMatchDist)
+    // let bestMatchDef = $scope.englishDict[bestMatch];
+    // console.log(`DEF`, bestMatchDef);
+    // $scope.bestMatch = bestMatch;
+    // updateMatches(bestMatch);
   };
 
-  // initialize default values
-  $scope.string1 = '';
-  $scope.string2 = '';
-  $scope.levenDist = 0;
-
-  // recalculate each time either string changes
-  $scope.calcLevenDist = function () {
-    // reset count variables
-    var j = void 0,
-        i = void 0;
-    // reset edit distance arrays
-    var string2LenArr = [],
-        finArr = void 0;
-    // update string lengths
-    $scope.string1 = $scope.string1.length ? $scope.string1 : '';
-    $scope.string2 = $scope.string2.length ? $scope.string2 : '';
-    var lenString1 = $scope.string1.length;
-    var lenString2 = $scope.string2.length;
-    for (j = 0; j <= lenString2; j++) {
-      string2LenArr[j] = j;
+  function updateMatches(newWord) {
+    if ($scope.matchWords1.length < 4) {
+      $scope.matchWords1.push(newWord);
+    } else {
+      $scope.matchWords1.forEach(function (oldWord, index) {
+        if (newWord.levenDist <= oldWord.levenDist) {
+          $scope.matchWords1.splice(index, 0, newWord);
+          if ($scope.matchWords1.length > 4) {
+            $scope.matchWords1.pop();
+          };
+          return;
+        }
+      });
     }
-    for (i = 1; i <= lenString1; i++) {
-      for (finArr = [i], j = 1; j <= lenString2; j++) {
-        finArr[j] = $scope.string1[i - 1] === $scope.string2[j - 1] ? string2LenArr[j - 1] : Math.min(string2LenArr[j - 1], string2LenArr[j], finArr[j - 1]) + 1;
-      }
-      string2LenArr = finArr;
-    }
-    $scope.levenDist = finArr[lenString2] || 0;
-    $scope.spellCheck($scope.string1);
-  };
-
-  $scope.activeTab = 0;
-
-  $scope.tabs = [{ title: 'Word 1', content: 'Dynamic content 1', index: '1' }, { title: 'Word 2', content: 'Dynamic content 2', index: '2' }, { title: 'Word 3', content: 'Dynamic content 3', index: '3' }, { title: 'Word 4', content: 'Dynamic content 4', index: '4' }];
-
-  $scope.activePill = $scope.tabs[0];
-
-  $scope.alertMe = function () {
-    setTimeout(function () {
-      $window.alert('You\'ve selected the alert tab!');
-    });
-  };
-
-  $scope.model = {
-    name: 'Tabs'
-  };
+    console.log('Matches: ', $scope.matchWords1);
+  }
 };
 
 exports.levenDistCtrl = levenDistCtrl;

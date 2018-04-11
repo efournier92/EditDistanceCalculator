@@ -15,18 +15,18 @@
         <div class="col-sm-6">
           <input type="text" class="form-control form-control-lg" 
                              style="background-color:#eee8d5"
-                             ng-model="string1"
-                             ng-change="calcLevenDist()"
-                             placeholder="String #1">
+                             ng-model="inputWord1"
+                             ng-change="calcLevenDist(inputWord1, inputWord2);spellCheck(inputWord1)"
+                             placeholder="Input #1">
 
         </div>
         <div class="col-sm-6">
           <input class="form-control form-control-lg" 
                  style="background-color:#eee8d5"
                  type="text"
-                 ng-model="string2"
-                 ng-change="calcLevenDist()"
-                 placeholder="String #2">
+                 ng-model="inputWord2"
+                 ng-change="calcLevenDist(inputWord1, inputWord2)"
+                 placeholder="Input #2">
         </div>
       </div>
       <div class="row" style="width:100%;font-size:20px;">
