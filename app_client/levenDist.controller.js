@@ -72,13 +72,13 @@ const levenDistCtrl = function levenDistCtrl($scope, $window) {
     if ($scope.matchWords1.length < 4) {
       $scope.matchWords1.push(newWord);
     } else {
-      $scope.matchWords1.forEach( (oldWord, index) => {
-        if (newWord.levenDist <= oldWord.levenDist) {
-          $scope.matchWords1.splice(index, 0, newWord); 
+      for (let i = 0; i <= 4; i++) {
+        if (newWord.levenDist <= $scope.matchWords1[i].levenDist) {
+          $scope.matchWords1.splice(i, 0, newWord); 
           if ($scope.matchWords1.length > 4) { $scope.matchWords1.pop() };
-          return;
         }
-      })
+        return;
+      }
     }
   }
 
