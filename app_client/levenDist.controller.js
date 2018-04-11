@@ -15,8 +15,8 @@ const levenDistCtrl = function levenDistCtrl($scope, $window) {
   $scope.reset();
 
   class Word {
-    constructor(word, def, levenDist) {
-      this.word = word;
+    constructor(name, def, levenDist) {
+      this.name = name;
       this.def = def;
       this.levenDist = levenDist;
     }
@@ -80,7 +80,6 @@ const levenDistCtrl = function levenDistCtrl($scope, $window) {
         }
       })
     }
-    console.log(`Matches: `, $scope.matchWords1)
   }
 
 };

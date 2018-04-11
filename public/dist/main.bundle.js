@@ -115,10 +115,10 @@ var levenDistCtrl = function levenDistCtrl($scope, $window) {
 
   $scope.reset();
 
-  var Word = function Word(word, def, levenDist) {
+  var Word = function Word(name, def, levenDist) {
     _classCallCheck(this, Word);
 
-    this.word = word;
+    this.name = name;
     this.def = def;
     this.levenDist = levenDist;
   };
@@ -181,7 +181,6 @@ var levenDistCtrl = function levenDistCtrl($scope, $window) {
         }
       });
     }
-    console.log('Matches: ', $scope.matchWords1);
   }
 };
 
