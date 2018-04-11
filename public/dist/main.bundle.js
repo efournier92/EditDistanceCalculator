@@ -178,7 +178,6 @@ var levenDistCtrl = function levenDistCtrl($scope, $window) {
             $scope.matchWords1.pop();
           };
         }
-        return;
       }
     }
   }

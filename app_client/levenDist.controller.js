@@ -77,7 +77,6 @@ const levenDistCtrl = function levenDistCtrl($scope, $window) {
           $scope.matchWords1.splice(i, 0, newWord); 
           if ($scope.matchWords1.length > 4) { $scope.matchWords1.pop() };
         }
-        return;
       }
     }
   }
