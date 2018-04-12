@@ -92,11 +92,32 @@ b {
 }
 
 .def-box {
+  width: 99.9%;
+  height: 200px;
+  background-color: #073642;
+  color: #fdf6e3;
+  text-align: left;
+  margin: 0;
+  border: 1px solid #fdf6e3;
+  line-height: normal;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
 
+a.nav-link {
+  height: 42px;
+}
+
+.nav-tabs>li.active>a, 
+.nav-tabs>li>a:hover,
+.nav-tabs>li.active>a:focus, 
+.nav-tabs>li.active>a:hover {
+  background-color: #073642;
+  color: #fdf6e3;
 }
 
 .nav-tabs>li>a {
-  background-color: #cb4b16;
-  /* background-color: #268bd2; */
+  background-color: #fdf6e3;
+  color: #073642;
 }
 

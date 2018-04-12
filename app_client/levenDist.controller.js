@@ -37,7 +37,7 @@ const levenDistCtrl = function levenDistCtrl($scope, $window) {
   // { title:'Word 1', content:'Dynamic content 1', index:'1' },
 
     // recalculate each time either string changes
-    $scope.calcLevenDist = (str1, str2) => {
+    $scope.calcLevenDist = (str1, str2, isMainDist) => {
       // reset variables
       let j = 0;
       let i = 0;
@@ -59,7 +59,9 @@ const levenDistCtrl = function levenDistCtrl($scope, $window) {
         }
         string2LenArr = finArr;
       }
-      $scope.levenDist = finArr[lenString2] || 0;
+      if (isMainDist) {
+        $scope.levenDist = finArr[lenString2];
+      }
       return finArr[lenString2] || 0;
     }
 

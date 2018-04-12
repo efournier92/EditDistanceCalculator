@@ -25,7 +25,7 @@
                  style="background-color:#eee8d5"
                  type="text"
                  ng-model="inputWord2"
-                 ng-change="calcLevenDist(inputWord1, inputWord2);spellCheck(inputWord2, matchWords2)"
+                 ng-change="calcLevenDist(inputWord1, inputWord2, true);spellCheck(inputWord2, matchWords2)"
                  placeholder="Input #2">
         </div>
       </div>
@@ -36,7 +36,9 @@
         <div class="col-sm-6">
           <uib-tabset active="active">
             <uib-tab ng-repeat="word in matchWords1 track by $index" index="$index" heading="{{word.name}}">
-              <div class="row def-box" style="width:100%;background-color:#eee8d5;color:black;height:200px" style="background-color:#eee8d5">
+              <div class="row def-box">
+                <b>{{word.levenDist}}</b> Edit Distance to '<b>{{inputWord1}}</b>'
+                <br /><br />
                 {{word.def}}
               </div>
             </uib-tab>
@@ -45,7 +47,7 @@
         <div class="col-sm-6">
           <uib-tabset>
             <uib-tab ng-repeat="word in matchWords2 track by $index" index="$index" heading="{{word.name}}">
-              <div class="row def-box" style="width:100%;background-color:white;color:black;height:200px;text-align:left;">
+              <div class="row def-box">
                 {{word.def}}
               </div>
             </uib-tab>
