@@ -184,7 +184,7 @@ var levenDistCtrl = function levenDistCtrl($scope, $window) {
   };
 
   function updateMatches(newWord, matchWords) {
-    for (var i = 0; i <= 4; i++) {
+    for (var i = 0; i < 4; i++) {
       if (newWord.levenDist <= matchWords[i].levenDist) {
         matchWords.splice(i, 0, newWord);
         if (matchWords.length > 4) {

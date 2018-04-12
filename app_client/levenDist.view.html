@@ -36,7 +36,7 @@
         <div class="col-sm-6">
           <uib-tabset active="active">
             <uib-tab ng-repeat="word in matchWords1 track by $index" index="$index" heading="{{word.name}}">
-              <div class="row" style="width:100%;background-color:#eee8d5;color:black;height:200px" style="background-color:#eee8d5">
+              <div class="row def-box" style="width:100%;background-color:#eee8d5;color:black;height:200px" style="background-color:#eee8d5">
                 {{word.def}}
               </div>
             </uib-tab>
@@ -45,7 +45,7 @@
         <div class="col-sm-6">
           <uib-tabset>
             <uib-tab ng-repeat="word in matchWords2 track by $index" index="$index" heading="{{word.name}}">
-              <div class="row" style="width:100%;background-color:white;color:black;height:200px;text-align:left;">
+              <div class="row def-box" style="width:100%;background-color:white;color:black;height:200px;text-align:left;">
                 {{word.def}}
               </div>
             </uib-tab>
