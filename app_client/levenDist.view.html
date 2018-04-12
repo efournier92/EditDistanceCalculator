@@ -4,42 +4,38 @@
     Levenshtein Distance Calculator
   </h1>
 
-  <div class="main-sub-container" style="height:100%">
+  <div class="main-sub-container">
     <div class="sub-text-container">
       <div class="row">
-        <div class="prompt-text" class="col-sm-12">
-          Input Two Strings To Compare
-        </div>
-      </div>
-      <div class="row" style="width:100%">
         <div class="col-sm-6">
-          <input type="text" class="form-control form-control-lg" 
-                             style="background-color:#eee8d5"
-                             ng-model="inputWord1"
-                             ng-change="calcLevenDist(inputWord1, inputWord2);spellCheck(inputWord1, matchWords1)"
-                             placeholder="Input #1">
+          <input class="form-control form-control-lg" 
+                 type="text"
+                 ng-model="inputWord1"
+                 ng-change="calcLevenDist(inputWord1, inputWord2, true);spellCheck(inputWord1, matchWords1)"
+                 placeholder="Input String #1">
 
         </div>
         <div class="col-sm-6">
           <input class="form-control form-control-lg" 
-                 style="background-color:#eee8d5"
                  type="text"
                  ng-model="inputWord2"
                  ng-change="calcLevenDist(inputWord1, inputWord2, true);spellCheck(inputWord2, matchWords2)"
-                 placeholder="Input #2">
+                 placeholder="Input String #2">
         </div>
       </div>
-      <div class="row" style="width:100%;font-size:20px;">
-        <b>Edit Distance</b>: {{levenDist}}
+      <div class="row distancePresenter">
+        Edit Distance: <b>{{levenDist}}</b> <span ng-hide="inputWord1 === '' || inputWord2 === ''"> (<i>from <b>{{inputWord1}}</b> to <b>{{inputWord2}}</b></i>)</span>
       </div>
-      <div class="row" style="width:100%">
+      <div class="row">
         <div class="col-sm-6">
           <uib-tabset active="active">
             <uib-tab ng-repeat="word in matchWords1 track by $index" index="$index" heading="{{word.name}}">
               <div class="row def-box">
-                <b>{{word.levenDist}}</b> Edit Distance to '<b>{{inputWord1}}</b>'
-                <br /><br />
-                {{word.def}}
+                <div ng-hide="word.name === ''">
+                  Edit Distance: <b>{{word.levenDist}}</b> (<i>from <b>{{inputWord1}}</b> to <b>{{word.name}}</b></i>)</span>
+                  <br /><br />
+                  {{word.def}}
+                </div>
               </div>
             </uib-tab>
           </uib-tabset>
@@ -48,7 +44,12 @@
           <uib-tabset>
             <uib-tab ng-repeat="word in matchWords2 track by $index" index="$index" heading="{{word.name}}">
               <div class="row def-box">
-                {{word.def}}
+                <div ng-hide="word.name === ''">
+                  Edit Distance: <b>{{word.levenDist}}</b> (<i>from <b>{{inputWord1}}</b> to <b>{{word.name}}</b></i>)</span>
+                  <br /><br />
+                  {{word.def}}
+                  {{word.def}}
+                </div>
               </div>
             </uib-tab>
           </uib-tabset>

@@ -120,7 +120,7 @@ var levenDistCtrl = function levenDistCtrl($scope, $window) {
       value: function newBlankArr() {
         var blankWordArr = [];
         for (var i = 0; i < 4; i++) {
-          var blankWord = new Word('', '', 10000);
+          var blankWord = new Word('', '', 1000000);
           blankWordArr.push(blankWord);
         }
         return blankWordArr;
@@ -135,22 +135,18 @@ var levenDistCtrl = function levenDistCtrl($scope, $window) {
 
   $scope.reset = function () {
     $scope.levenDist = 0;
-    $scope.string1 = '';
-    $scope.string2 = '';
+    $scope.inputWord1 = '';
+    $scope.inputWord2 = '';
     $scope.matchWords1 = Word.newBlankArr();
-    $scope.matchWords1.which = 1;
     $scope.matchWords2 = Word.newBlankArr();
-    $scope.matchWords2.which = 2;
-    $scope.englishDict = _dictionary2.default;
   };
 
+  $scope.englishDict = _dictionary2.default;
   $scope.reset();
-
-  // { title:'Word 1', content:'Dynamic content 1', index:'1' },
 
   // recalculate each time either string changes
   $scope.calcLevenDist = function (str1, str2, isMainDist) {
-    // reset variables
+    // initialize variables
     var j = 0;
     var i = 0;
     var string2LenArr = [];
@@ -171,29 +167,32 @@ var levenDistCtrl = function levenDistCtrl($scope, $window) {
     if (isMainDist) {
       $scope.levenDist = finArr[lenString2];
     }
-    return finArr[lenString2] || 0;
+    return finArr[lenString2];
   };
 
   $scope.spellCheck = function (wordToCheck, matchWords) {
     var i = void 0;
-    var bestMatchDist = 100000;
-    var bestMatch = '';
     for (var word in $scope.englishDict) {
       var wordDist = $scope.calcLevenDist(wordToCheck, word);
       var newWord = new Word(word, $scope.englishDict[word], wordDist);
-      updateMatches(newWord, matchWords);
+      updateMatches(wordToCheck, newWord, matchWords);
+      updateDistances(wordToCheck, newWord, matchWords);
     }
   };
 
-  function updateMatches(newWord, matchWords) {
+  function updateMatches(wordToCheck, newWord, matchWords) {
     for (var i = 0; i < 4; i++) {
       if (newWord.levenDist <= matchWords[i].levenDist) {
         matchWords.splice(i, 0, newWord);
-        if (matchWords.length > 4) {
-          matchWords.pop();
-        };
+        matchWords.pop();
         return;
       }
+    }
+  }
+
+  function updateDistances(wordToCheck, newWord, matchWords) {
+    for (var i = 0; i < 4; i++) {
+      matchWords[i].levenDist = $scope.calcLevenDist(wordToCheck, matchWords[i].name);
     }
   }
 };

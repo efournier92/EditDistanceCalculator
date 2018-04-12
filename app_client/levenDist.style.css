@@ -1,17 +1,24 @@
 body {
   background-color: #212121;
+  color: #fdf6e3;
   height: 100vh;
-  color: white;
   display: flex;
   align-items: center;
 }
 
-input {
+.form-control {
+  background-color: #eee8d5;
   text-align: center;
 }
 
-b {
+.container {
+  width: 60%;
+  padding: 0px;
+}
+
+.row {
   width: 100%;
+  padding: 2%;
 }
 
 #header {
@@ -28,26 +35,23 @@ b {
 
 #main-container {
   background-color: #65737e;
+  border: solid 2px #a7adba;
   height: 80%;
   width: 80%;
   margin: 10%;
   line-height: 40%;
   text-align: center;
-  border: solid 2px #a7adba;
-}
-
-#form-dash {
-  margin-top: 11px;
-  font-size: 32px;
+  overflow: hidden;
 }
 
 .main-sub-container {
-  height: 375px;
+  height: 100%;
   padding-bottom: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 .sub-text-container {
@@ -60,40 +64,9 @@ b {
   justify-content: center;
 }
 
-.prompt-text {
-  width: 100%;
-  font-size: 28px;
-}
-
-.number-input {
-  width: 160px;
-}
-
-.big-button {
-  width: 60%;
-}
-
-.btn {
-  margin: 16px;
-}
-
-.container {
-  width: 60%;
-  padding: 0px;
-}
-
-.row {
-  width: 100%;
-  padding: 2%;
-}
-
-.uib-tab {
-  width: 25%;
-}
-
 .def-box {
   width: 99.9%;
-  height: 200px;
+  height: 36vh;
   background-color: #073642;
   color: #fdf6e3;
   text-align: left;
@@ -102,6 +75,14 @@ b {
   line-height: normal;
   overflow-y: scroll;
   overflow-x: hidden;
+}
+
+.distancePresenter {
+  font-size:20px;
+}
+
+.uib-tab {
+  width: 25%;
 }
 
 a.nav-link {
