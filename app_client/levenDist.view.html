@@ -1,11 +1,16 @@
 <div id="main-container" class="container">
 
   <h1 id="header">
-    Levenshtein Distance Calculator
+    Edit Distance Calculator
   </h1>
 
   <div class="main-sub-container">
     <div class="sub-text-container">
+      <div class="row" style="padding:0;margin:0">
+      <button ng-click="reset()" class="btn btn-primary btn-transparent">
+        Reset
+      </button>
+        </div>
       <div class="row">
         <div class="col-sm-6">
           <input class="form-control form-control-lg" 
@@ -33,8 +38,8 @@
               <div class="row def-box">
                 <div ng-hide="word.name === ''">
                   Edit Distance: <b>{{word.levenDist}}</b> (<i>from <b>{{inputWord1}}</b> to <b>{{word.name}}</b></i>)</span>
-                  <br /><br />
-                  {{word.def}}
+                <br /><br />
+                {{word.def}}
                 </div>
               </div>
             </uib-tab>
@@ -46,9 +51,9 @@
               <div class="row def-box">
                 <div ng-hide="word.name === ''">
                   Edit Distance: <b>{{word.levenDist}}</b> (<i>from <b>{{inputWord1}}</b> to <b>{{word.name}}</b></i>)</span>
-                  <br /><br />
-                  {{word.def}}
-                  {{word.def}}
+                <br /><br />
+                {{word.def}}
+                {{word.def}}
                 </div>
               </div>
             </uib-tab>

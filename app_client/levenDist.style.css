@@ -81,6 +81,20 @@ body {
   font-size:20px;
 }
 
+.btn-transparent {
+  background-color: Transparent;
+  color: #073642;
+  font-size: 20px;
+  margin-top: -50px;
+  border: solid 2px #073642;
+}
+
+.btn-transparent:hover,
+.btn-transparent:focus {
+  background-color: #073642;
+  color: #fdf6e3;
+}
+
 .uib-tab {
   width: 25%;
 }
