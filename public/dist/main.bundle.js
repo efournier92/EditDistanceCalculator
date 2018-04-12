@@ -93,6 +93,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.levenDistCtrl = undefined;
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _dictionary = __webpack_require__(2);
 
 var _dictionary2 = _interopRequireDefault(_dictionary);
@@ -102,32 +104,51 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var levenDistCtrl = function levenDistCtrl($scope, $window) {
+  var Word = function () {
+    function Word(name, def, levenDist) {
+      _classCallCheck(this, Word);
+
+      this.name = name;
+      this.def = def;
+      this.levenDist = levenDist;
+    }
+    // Method
+
+
+    _createClass(Word, null, [{
+      key: 'newBlankArr',
+      value: function newBlankArr() {
+        var blankWordArr = [];
+        for (var i = 0; i < 4; i++) {
+          var blankWord = new Word('', '', 10000);
+          blankWordArr.push(blankWord);
+        }
+        return blankWordArr;
+      }
+    }]);
+
+    return Word;
+  }();
 
   // initialize default values
+
+
   $scope.reset = function () {
     $scope.levenDist = 0;
     $scope.string1 = '';
     $scope.string2 = '';
-    $scope.matchWords1 = [];
-    $scope.matchWords2 = [];
+    $scope.matchWords1 = Word.newBlankArr();
+    $scope.matchWords1.which = 1;
+    $scope.matchWords2 = Word.newBlankArr();
+    $scope.matchWords2.which = 2;
     $scope.englishDict = _dictionary2.default;
   };
 
   $scope.reset();
 
-  var Word = function Word(name, def, levenDist) {
-    _classCallCheck(this, Word);
-
-    this.name = name;
-    this.def = def;
-    this.levenDist = levenDist;
-  };
-
   // { title:'Word 1', content:'Dynamic content 1', index:'1' },
 
   // recalculate each time either string changes
-
-
   $scope.calcLevenDist = function (str1, str2) {
     // reset variables
     var j = 0;
@@ -151,33 +172,25 @@ var levenDistCtrl = function levenDistCtrl($scope, $window) {
     return finArr[lenString2] || 0;
   };
 
-  $scope.spellCheck = function (wordToCheck) {
+  $scope.spellCheck = function (wordToCheck, matchWords) {
     var i = void 0;
     var bestMatchDist = 100000;
     var bestMatch = '';
     for (var word in $scope.englishDict) {
       var wordDist = $scope.calcLevenDist(wordToCheck, word);
       var newWord = new Word(word, $scope.englishDict[word], wordDist);
-      updateMatches(newWord);
+      updateMatches(newWord, matchWords);
     }
-    // console.log(`Best Match: `, bestMatch, bestMatchDist)
-    // let bestMatchDef = $scope.englishDict[bestMatch];
-    // console.log(`DEF`, bestMatchDef);
-    // $scope.bestMatch = bestMatch;
-    // updateMatches(bestMatch);
   };
 
-  function updateMatches(newWord) {
-    if ($scope.matchWords1.length < 4) {
-      $scope.matchWords1.push(newWord);
-    } else {
-      for (var i = 0; i <= 4; i++) {
-        if (newWord.levenDist <= $scope.matchWords1[i].levenDist) {
-          $scope.matchWords1.splice(i, 0, newWord);
-          if ($scope.matchWords1.length > 4) {
-            $scope.matchWords1.pop();
-          };
-        }
+  function updateMatches(newWord, matchWords) {
+    for (var i = 0; i <= 4; i++) {
+      if (newWord.levenDist <= matchWords[i].levenDist) {
+        matchWords.splice(i, 0, newWord);
+        if (matchWords.length > 4) {
+          matchWords.pop();
+        };
+        return;
       }
     }
   }

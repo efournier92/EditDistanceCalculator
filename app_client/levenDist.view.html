@@ -16,7 +16,7 @@
           <input type="text" class="form-control form-control-lg" 
                              style="background-color:#eee8d5"
                              ng-model="inputWord1"
-                             ng-change="calcLevenDist(inputWord1, inputWord2);spellCheck(inputWord1)"
+                             ng-change="calcLevenDist(inputWord1, inputWord2);spellCheck(inputWord1, matchWords1)"
                              placeholder="Input #1">
 
         </div>
@@ -25,7 +25,7 @@
                  style="background-color:#eee8d5"
                  type="text"
                  ng-model="inputWord2"
-                 ng-change="calcLevenDist(inputWord1, inputWord2)"
+                 ng-change="calcLevenDist(inputWord1, inputWord2);spellCheck(inputWord2, matchWords2)"
                  placeholder="Input #2">
         </div>
       </div>
@@ -43,10 +43,10 @@
           </uib-tabset>
         </div>
         <div class="col-sm-6">
-          <uib-tabset active="active">
-            <uib-tab ng-repeat="tab in tabs track by $index" index="$index" heading="tab.title">
+          <uib-tabset>
+            <uib-tab ng-repeat="word in matchWords2 track by $index" index="$index" heading="{{word.name}}">
               <div class="row" style="width:100%;background-color:white;color:black;height:200px;text-align:left;">
-                {{tab.content}}
+                {{word.def}}
               </div>
             </uib-tab>
           </uib-tabset>

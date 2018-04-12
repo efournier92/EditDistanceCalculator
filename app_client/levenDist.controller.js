@@ -2,25 +2,37 @@ import englishDict from './dictionaries/dictionary.json';
 
 const levenDistCtrl = function levenDistCtrl($scope, $window) {
 
-  // initialize default values
-  $scope.reset = () => {
-    $scope.levenDist = 0;
-    $scope.string1 = ``;
-    $scope.string2 = ``;
-    $scope.matchWords1 = [];
-    $scope.matchWords2 = [];
-    $scope.englishDict = englishDict;
-  }
-
-  $scope.reset();
-
   class Word {
     constructor(name, def, levenDist) {
       this.name = name;
       this.def = def;
       this.levenDist = levenDist;
     }
+    // Method
+    static newBlankArr() {
+      let blankWordArr = [];
+      for (let i = 0; i < 4; i++) {
+        let blankWord = new Word(``, ``, 10000);
+        blankWordArr.push(blankWord);
+      }
+      return blankWordArr;
+    }
   }
+
+  // initialize default values
+  $scope.reset = () => {
+    $scope.levenDist = 0;
+    $scope.string1 = ``;
+    $scope.string2 = ``;
+    $scope.matchWords1 = Word.newBlankArr();
+    $scope.matchWords1.which = 1;
+    $scope.matchWords2 = Word.newBlankArr();
+    $scope.matchWords2.which = 2;
+    $scope.englishDict = englishDict;
+  }
+
+  $scope.reset();
+
 
   // { title:'Word 1', content:'Dynamic content 1', index:'1' },
 
@@ -51,32 +63,23 @@ const levenDistCtrl = function levenDistCtrl($scope, $window) {
       return finArr[lenString2] || 0;
     }
 
-  $scope.spellCheck = (wordToCheck) => {
+  $scope.spellCheck = (wordToCheck, matchWords) => {
     let i;
     let bestMatchDist = 100000;
     let bestMatch = ``;
     for (var word in $scope.englishDict) {
       let wordDist = $scope.calcLevenDist(wordToCheck, word);
       let newWord = new Word(word, $scope.englishDict[word], wordDist)
-      updateMatches(newWord);
+      updateMatches(newWord, matchWords);
     }
-    // console.log(`Best Match: `, bestMatch, bestMatchDist)
-    // let bestMatchDef = $scope.englishDict[bestMatch];
-    // console.log(`DEF`, bestMatchDef);
-    // $scope.bestMatch = bestMatch;
-    // updateMatches(bestMatch);
   }
 
-
-  function updateMatches(newWord) {
-    if ($scope.matchWords1.length < 4) {
-      $scope.matchWords1.push(newWord);
-    } else {
-      for (let i = 0; i <= 4; i++) {
-        if (newWord.levenDist <= $scope.matchWords1[i].levenDist) {
-          $scope.matchWords1.splice(i, 0, newWord); 
-          if ($scope.matchWords1.length > 4) { $scope.matchWords1.pop() };
-        }
+  function updateMatches(newWord, matchWords) {
+    for (let i = 0; i <= 4; i++) {
+      if (newWord.levenDist <= matchWords[i].levenDist) {
+        matchWords.splice(i, 0, newWord); 
+        if (matchWords.length > 4) { matchWords.pop() };
+        return;
       }
     }
   }
