@@ -1,15 +1,15 @@
-import { levenDistCtrl } from './levenDist.controller.js';
+import { editDistCtrl } from './editDist.controller.js';
 
 angular
-  .module(`levenDist`, [`ngRoute`, `ui.bootstrap`])
+  .module(`editDist`, [`ngRoute`, `ui.bootstrap`])
   .config([`$routeProvider`, config])
-  .controller(`levenDistCtrl`, levenDistCtrl);
+  .controller(`editDistCtrl`, editDistCtrl);
 
 function config($routeProvider) {
   $routeProvider
     .when(`/`, {
-      templateUrl: `levenDist.view.html`,
-      controller: `levenDistCtrl`,
+      templateUrl: `editDist.view.html`,
+      controller: `editDistCtrl`,
     })
 }
 

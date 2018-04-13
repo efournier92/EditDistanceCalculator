@@ -70,14 +70,14 @@
 "use strict";
 
 
-var _levenDistController = __webpack_require__(1);
+var _editDistController = __webpack_require__(1);
 
-angular.module('levenDist', ['ngRoute', 'ui.bootstrap']).config(['$routeProvider', config]).controller('levenDistCtrl', _levenDistController.levenDistCtrl);
+angular.module('editDist', ['ngRoute', 'ui.bootstrap']).config(['$routeProvider', config]).controller('editDistCtrl', _editDistController.editDistCtrl);
 
 function config($routeProvider) {
   $routeProvider.when('/', {
-    templateUrl: 'levenDist.view.html',
-    controller: 'levenDistCtrl'
+    templateUrl: 'editDist.view.html',
+    controller: 'editDistCtrl'
   });
 }
 
@@ -91,7 +91,7 @@ function config($routeProvider) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.levenDistCtrl = undefined;
+exports.editDistCtrl = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -103,16 +103,17 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var levenDistCtrl = function levenDistCtrl($scope, $window, $uibModal) {
+var editDistCtrl = function editDistCtrl($scope, $window, $uibModal) {
   var Word = function () {
-    function Word(name, def, levenDist) {
+    // construct Word object
+    function Word(name, def, editDist) {
       _classCallCheck(this, Word);
 
       this.name = name;
       this.def = def;
-      this.levenDist = levenDist;
+      this.editDist = editDist;
     }
-    // Method
+    // static method to create an array of four blank Words
 
 
     _createClass(Word, null, [{
@@ -120,6 +121,9 @@ var levenDistCtrl = function levenDistCtrl($scope, $window, $uibModal) {
       value: function newBlankArr() {
         var blankWordArr = [];
         for (var i = 0; i < 4; i++) {
+          // instantiate four Words 
+          // set Word.name & Word.def to blank strings
+          // set Word.editDist to impossibly high number
           var blankWord = new Word('', '', 1000000);
           blankWordArr.push(blankWord);
         }
@@ -130,22 +134,24 @@ var levenDistCtrl = function levenDistCtrl($scope, $window, $uibModal) {
     return Word;
   }();
 
-  // initialize default values
+  // Load dictionary JSON file into scope
 
 
+  $scope.englishDict = _dictionary2.default;
+
+  // initialize/reset values to default
   $scope.reset = function () {
-    $scope.levenDist = 0;
+    $scope.editDist = 0;
     $scope.inputWord1 = '';
     $scope.inputWord2 = '';
     $scope.matchWords1 = Word.newBlankArr();
     $scope.matchWords2 = Word.newBlankArr();
   };
-
-  $scope.englishDict = _dictionary2.default;
+  // reset values on page load
   $scope.reset();
 
   // recalculate each time either string changes
-  $scope.calcLevenDist = function (str1, str2, isMainDist) {
+  $scope.calcEditDist = function (str1, str2, isMainDist) {
     // initialize variables
     var j = 0;
     var i = 0;
@@ -165,7 +171,7 @@ var levenDistCtrl = function levenDistCtrl($scope, $window, $uibModal) {
       string2LenArr = finArr;
     }
     if (isMainDist) {
-      $scope.levenDist = finArr[lenString2];
+      $scope.editDist = finArr[lenString2];
     }
     return finArr[lenString2];
   };
@@ -173,7 +179,7 @@ var levenDistCtrl = function levenDistCtrl($scope, $window, $uibModal) {
   $scope.spellCheck = function (wordToCheck, matchWords) {
     var i = void 0;
     for (var word in $scope.englishDict) {
-      var wordDist = $scope.calcLevenDist(wordToCheck, word);
+      var wordDist = $scope.calcEditDist(wordToCheck, word);
       var newWord = new Word(word, $scope.englishDict[word], wordDist);
       updateMatches(wordToCheck, newWord, matchWords);
       updateDistances(wordToCheck, newWord, matchWords);
@@ -195,7 +201,7 @@ var levenDistCtrl = function levenDistCtrl($scope, $window, $uibModal) {
 
   function updateMatches(wordToCheck, newWord, matchWords) {
     for (var i = 0; i < 4; i++) {
-      if (newWord.levenDist <= matchWords[i].levenDist) {
+      if (newWord.editDist <= matchWords[i].editDist) {
         matchWords.splice(i, 0, newWord);
         matchWords.pop();
         return;
@@ -205,12 +211,12 @@ var levenDistCtrl = function levenDistCtrl($scope, $window, $uibModal) {
 
   function updateDistances(wordToCheck, newWord, matchWords) {
     for (var i = 0; i < 4; i++) {
-      matchWords[i].levenDist = $scope.calcLevenDist(wordToCheck, matchWords[i].name);
+      matchWords[i].editDist = $scope.calcEditDist(wordToCheck, matchWords[i].name);
     }
   }
 };
 
-exports.levenDistCtrl = levenDistCtrl;
+exports.editDistCtrl = editDistCtrl;
 
 /***/ }),
 /* 2 */

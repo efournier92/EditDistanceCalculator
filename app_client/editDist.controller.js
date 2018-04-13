@@ -1,17 +1,21 @@
 import englishDict from './dictionaries/dictionary.json';
 
-const levenDistCtrl = function levenDistCtrl($scope, $window, $uibModal) {
+const editDistCtrl = function editDistCtrl($scope, $window, $uibModal) {
 
   class Word {
-    constructor(name, def, levenDist) {
+    // construct Word object
+    constructor(name, def, editDist) {
       this.name = name;
       this.def = def;
-      this.levenDist = levenDist;
+      this.editDist = editDist;
     }
-    // Method
+    // static method to create an array of four blank Words
     static newBlankArr() {
       let blankWordArr = [];
       for (let i = 0; i < 4; i++) {
+        // instantiate four Words 
+        // set Word.name & Word.def to blank strings
+        // set Word.editDist to impossibly high number
         let blankWord = new Word(``, ``, 1000000);
         blankWordArr.push(blankWord);
       }
@@ -19,20 +23,22 @@ const levenDistCtrl = function levenDistCtrl($scope, $window, $uibModal) {
     }
   }
 
-  // initialize default values
+  // Load dictionary JSON file into scope
+  $scope.englishDict = englishDict;
+
+  // initialize/reset values to default
   $scope.reset = () => {
-    $scope.levenDist = 0;
+    $scope.editDist = 0;
     $scope.inputWord1= ``;
     $scope.inputWord2= ``;
     $scope.matchWords1 = Word.newBlankArr();
     $scope.matchWords2 = Word.newBlankArr();
   }
-
-  $scope.englishDict = englishDict;
+  // reset values on page load
   $scope.reset();
 
   // recalculate each time either string changes
-  $scope.calcLevenDist = (str1, str2, isMainDist) => {
+  $scope.calcEditDist = (str1, str2, isMainDist) => {
     // initialize variables
     let j = 0;
     let i = 0;
@@ -55,7 +61,7 @@ const levenDistCtrl = function levenDistCtrl($scope, $window, $uibModal) {
       string2LenArr = finArr;
     }
     if (isMainDist) {
-      $scope.levenDist = finArr[lenString2];
+      $scope.editDist = finArr[lenString2];
     }
     return finArr[lenString2];
   }
@@ -63,7 +69,7 @@ const levenDistCtrl = function levenDistCtrl($scope, $window, $uibModal) {
   $scope.spellCheck = (wordToCheck, matchWords) => {
     let i;
     for (var word in $scope.englishDict) {
-      let wordDist = $scope.calcLevenDist(wordToCheck, word);
+      let wordDist = $scope.calcEditDist(wordToCheck, word);
       let newWord = new Word(word, $scope.englishDict[word], wordDist)
       updateMatches(wordToCheck, newWord, matchWords);
       updateDistances(wordToCheck, newWord, matchWords);
@@ -85,7 +91,7 @@ const levenDistCtrl = function levenDistCtrl($scope, $window, $uibModal) {
 
   function updateMatches(wordToCheck, newWord, matchWords) {
     for (let i = 0; i < 4; i++) {
-      if (newWord.levenDist <= matchWords[i].levenDist) {
+      if (newWord.editDist <= matchWords[i].editDist) {
         matchWords.splice(i, 0, newWord); 
         matchWords.pop();
         return;
@@ -95,10 +101,10 @@ const levenDistCtrl = function levenDistCtrl($scope, $window, $uibModal) {
 
   function updateDistances(wordToCheck, newWord, matchWords) {
     for (let i = 0; i < 4; i++) {
-      matchWords[i].levenDist = $scope.calcLevenDist(wordToCheck, matchWords[i].name);
+      matchWords[i].editDist = $scope.calcEditDist(wordToCheck, matchWords[i].name);
     }
   }
 };
 
-export { levenDistCtrl }
+export { editDistCtrl }
 

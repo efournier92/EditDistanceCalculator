@@ -19,7 +19,7 @@
           <input class="form-control form-control-lg" 
                  type="text"
                  ng-model="inputWord1"
-                 ng-change="calcLevenDist(inputWord1, inputWord2, true);spellCheck(inputWord1, matchWords1)"
+                 ng-change="calcEditDist(inputWord1, inputWord2, true);spellCheck(inputWord1, matchWords1)"
                  placeholder="Input String #1">
 
         </div>
@@ -27,12 +27,12 @@
           <input class="form-control form-control-lg" 
                  type="text"
                  ng-model="inputWord2"
-                 ng-change="calcLevenDist(inputWord1, inputWord2, true);spellCheck(inputWord2, matchWords2)"
+                 ng-change="calcEditDist(inputWord1, inputWord2, true);spellCheck(inputWord2, matchWords2)"
                  placeholder="Input String #2">
         </div>
       </div>
       <div class="row distancePresenter">
-        Edit Distance: <b>{{levenDist}}</b> <span ng-hide="inputWord1 === '' || inputWord2 === ''"> (<i>from <b>{{inputWord1}}</b> to <b>{{inputWord2}}</b></i>)</span>
+        Edit Distance: <b>{{editDist}}</b> <span ng-hide="inputWord1 === '' || inputWord2 === ''"> (<i>from <b>{{inputWord1}}</b> to <b>{{inputWord2}}</b></i>)</span>
       </div>
       <div class="row">
         <div class="col-sm-6">
@@ -40,7 +40,7 @@
             <uib-tab ng-repeat="word in matchWords1 track by $index" index="$index" heading="{{word.name}}">
               <div class="row def-box">
                 <div ng-hide="word.name === ''">
-                  Edit Distance: <b>{{word.levenDist}}</b> (<i>from <b>{{inputWord1}}</b> to <b>{{word.name}}</b></i>)</span>
+                  Edit Distance: <b>{{word.editDist}}</b> (<i>from <b>{{inputWord1}}</b> to <b>{{word.name}}</b></i>)</span>
                 <br /><br />
                 {{word.def}}
                 </div>
@@ -53,7 +53,7 @@
             <uib-tab ng-repeat="word in matchWords2 track by $index" index="$index" heading="{{word.name}}">
               <div class="row def-box">
                 <div ng-hide="word.name === ''">
-                  Edit Distance: <b>{{word.levenDist}}</b> (<i>from <b>{{inputWord1}}</b> to <b>{{word.name}}</b></i>)</span>
+                  Edit Distance: <b>{{word.editDist}}</b> (<i>from <b>{{inputWord1}}</b> to <b>{{word.name}}</b></i>)</span>
                 <br /><br />
                 {{word.def}}
                 {{word.def}}
