@@ -103,7 +103,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var levenDistCtrl = function levenDistCtrl($scope, $window) {
+var levenDistCtrl = function levenDistCtrl($scope, $window, $uibModal) {
   var Word = function () {
     function Word(name, def, levenDist) {
       _classCallCheck(this, Word);
@@ -130,9 +130,14 @@ var levenDistCtrl = function levenDistCtrl($scope, $window) {
     return Word;
   }();
 
+  $scope.openModal = function () {
+    $scope.modalInstance = $uibModal.open({
+      templateUrl: 'aboutEditDist.html'
+    });
+  };
+  $scope.openModal();
+
   // initialize default values
-
-
   $scope.reset = function () {
     $scope.levenDist = 0;
     $scope.inputWord1 = '';

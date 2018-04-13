@@ -1,6 +1,6 @@
 import englishDict from './dictionaries/dictionary.json';
 
-const levenDistCtrl = function levenDistCtrl($scope, $window) {
+const levenDistCtrl = function levenDistCtrl($scope, $window, $uibModal) {
 
   class Word {
     constructor(name, def, levenDist) {
@@ -18,6 +18,13 @@ const levenDistCtrl = function levenDistCtrl($scope, $window) {
       return blankWordArr;
     }
   }
+
+  $scope.openModal=function () {
+    $scope.modalInstance=$uibModal.open({
+      templateUrl: 'aboutEditDist.html'
+    });
+  }
+  $scope.openModal();
 
   // initialize default values
   $scope.reset = () => {
