@@ -19,18 +19,6 @@ const levenDistCtrl = function levenDistCtrl($scope, $window, $uibModal) {
     }
   }
 
-  $scope.openModal = function () {
-    $scope.modalInstance = $uibModal.open({
-      templateUrl: './infoModal.template.html',
-      scope: $scope
-    });
-  }
-  $scope.openModal();
-
-  $scope.closeModal = function () {
-    $scope.modalInstance.close();
-  }
-
   // initialize default values
   $scope.reset = () => {
     $scope.levenDist = 0;
@@ -81,6 +69,19 @@ const levenDistCtrl = function levenDistCtrl($scope, $window, $uibModal) {
       updateDistances(wordToCheck, newWord, matchWords);
     }
   }
+
+  $scope.openInfoModal = () => {
+    $scope.infoModalInstance = $uibModal.open({
+      templateUrl: `./infoModal.template.html`,
+      scope: $scope
+    });
+  }
+
+  $scope.closeInfoModal = () => {
+    $scope.infoModalInstance.close();
+  };
+
+  $scope.openInfoModal();
 
   function updateMatches(wordToCheck, newWord, matchWords) {
     for (let i = 0; i < 4; i++) {

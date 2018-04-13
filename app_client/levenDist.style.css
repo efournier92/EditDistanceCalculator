@@ -115,7 +115,13 @@ a.nav-link {
   background-color: #fdf6e3;
   color: #073642;
 }
+
 .modal-content {
   background-color: #65737e;
   padding: 10%;
+}
+
+.modal-button {
+  margin-top:15px;
+  text-align:center;
 }
