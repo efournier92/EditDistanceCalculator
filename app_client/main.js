@@ -1,4 +1,5 @@
 import { levenDistCtrl } from './levenDist.controller.js';
+import { infoModalCtrl } from './infoModal/infoModal.controller.js';
 
 angular
   .module(`levenDist`, [`ngRoute`, `ui.bootstrap`])

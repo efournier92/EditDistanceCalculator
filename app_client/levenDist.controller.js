@@ -19,12 +19,17 @@ const levenDistCtrl = function levenDistCtrl($scope, $window, $uibModal) {
     }
   }
 
-  $scope.openModal=function () {
-    $scope.modalInstance=$uibModal.open({
-      templateUrl: 'aboutEditDist.html'
+  $scope.openModal = function () {
+    $scope.modalInstance = $uibModal.open({
+      templateUrl: './infoModal.template.html',
+      scope: $scope
     });
   }
   $scope.openModal();
+
+  $scope.closeModal = function () {
+    $scope.modalInstance.close();
+  }
 
   // initialize default values
   $scope.reset = () => {
