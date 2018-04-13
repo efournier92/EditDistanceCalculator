@@ -83,6 +83,7 @@ body {
 
 .btn-transparent {
   background-color: Transparent;
+  width: 85px;
   color: #073642;
   font-size: 20px;
   margin-top: -50px;
@@ -93,6 +94,16 @@ body {
 .btn-transparent:focus {
   background-color: #073642;
   color: #fdf6e3;
+}
+
+.btn-modal {
+  margin-top:15px;
+  text-align:center;
+}
+
+.modal-content {
+  background-color: #65737e;
+  padding: 10%;
 }
 
 .uib-tab {
@@ -116,12 +127,3 @@ a.nav-link {
   color: #073642;
 }
 
-.modal-content {
-  background-color: #65737e;
-  padding: 10%;
-}
-
-.modal-button {
-  margin-top:15px;
-  text-align:center;
-}
