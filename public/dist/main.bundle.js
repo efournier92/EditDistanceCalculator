@@ -123,7 +123,7 @@ var editDistCtrl = function editDistCtrl($scope, $window, $uibModal) {
         for (var i = 0; i < 4; i++) {
           // instantiate four Words 
           // set Word.name & Word.def to blank strings
-          // set Word.editDist to impossibly high number
+          // set Word.editDist to an impossibly high value, to be overidden
           var blankWord = new Word('', '', 1000000);
           blankWordArr.push(blankWord);
         }
@@ -152,37 +152,54 @@ var editDistCtrl = function editDistCtrl($scope, $window, $uibModal) {
 
   // recalculate each time either string changes
   $scope.calcEditDist = function (str1, str2, isMainDist) {
-    // initialize variables
+    // initialize block variables
     var j = 0;
     var i = 0;
-    var string2LenArr = [];
+    var comparisonArr = [];
     var finArr = [];
     var lenString1 = str1 ? str1.length : 0;
     var lenString2 = str2 ? str2.length : 0;
 
+    // fill array with Y-axis matrix indexes
     for (j = 0; j <= lenString2; j++) {
-      string2LenArr[j] = j;
+      comparisonArr[j] = j;
     }
 
+    // iterate over comparison matrix
+    // calculate minimum edit distance for each node
     for (i = 1; i <= lenString1; i++) {
       for (finArr = [i], j = 1; j <= lenString2; j++) {
-        finArr[j] = str1[i - 1] === str2[j - 1] ? string2LenArr[j - 1] : Math.min(string2LenArr[j - 1], string2LenArr[j], finArr[j - 1]) + 1;
+        finArr[j] =
+        // check if characters are the same
+        str1[i - 1] === str2[j - 1]
+        // if same, no change needed
+        ? comparisonArr[j - 1]
+        // else minimum edit distance equals the minimum adjacent value plus 1
+        : Math.min(comparisonArr[j - 1], comparisonArr[j], finArr[j - 1]) + 1;
       }
-      string2LenArr = finArr;
+      // shift to next row of matrix
+      comparisonArr = finArr;
     }
     if (isMainDist) {
+      // update scope if comparing two user inputs
       $scope.editDist = finArr[lenString2];
     }
+    // last calculated node represents total minimum edit distance
     return finArr[lenString2];
   };
 
-  $scope.spellCheck = function (wordToCheck, matchWords) {
+  $scope.findSimilarWords = function (wordToCheck, matchWords) {
     var i = void 0;
+    // compare each dictionary word to user input string
     for (var word in $scope.englishDict) {
+      // calculate edit distance between user input & dictionary word
       var wordDist = $scope.calcEditDist(wordToCheck, word);
+      // create new Word object
       var newWord = new Word(word, $scope.englishDict[word], wordDist);
+      // update array of best matches to user input
       updateMatches(wordToCheck, newWord, matchWords);
-      updateDistances(wordToCheck, newWord, matchWords);
+      // update edit distances in array of best matches
+      updateEditDistances(wordToCheck, newWord, matchWords);
     }
   };
 
@@ -199,6 +216,7 @@ var editDistCtrl = function editDistCtrl($scope, $window, $uibModal) {
 
   $scope.openInfoModal();
 
+  // update match array with newly found word
   function updateMatches(wordToCheck, newWord, matchWords) {
     for (var i = 0; i < 4; i++) {
       if (newWord.editDist <= matchWords[i].editDist) {
@@ -209,7 +227,7 @@ var editDistCtrl = function editDistCtrl($scope, $window, $uibModal) {
     }
   }
 
-  function updateDistances(wordToCheck, newWord, matchWords) {
+  function updateEditDistances(wordToCheck, newWord, matchWords) {
     for (var i = 0; i < 4; i++) {
       matchWords[i].editDist = $scope.calcEditDist(wordToCheck, matchWords[i].name);
     }
