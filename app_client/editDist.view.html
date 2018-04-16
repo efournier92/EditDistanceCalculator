@@ -53,7 +53,7 @@
             <uib-tab ng-repeat="word in matchWords2 track by $index" index="$index" heading="{{word.name}}">
               <div class="row def-box">
                 <div ng-hide="word.name === ''">
-                  Edit Distance: <b>{{word.editDist}}</b> (<i>from <b>{{inputWord1}}</b> to <b>{{word.name}}</b></i>)</span>
+                  Edit Distance: <b>{{word.editDist}}</b> (<i>from <b>{{inputWord2}}</b> to <b>{{word.name}}</b></i>)</span>
                 <br /><br />
                 {{word.def}}
                 {{word.def}}

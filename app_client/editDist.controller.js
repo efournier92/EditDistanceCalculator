@@ -103,6 +103,13 @@ const editDistCtrl = function editDistCtrl($scope, $window, $uibModal) {
 
   $scope.openInfoModal();
 
+  // close modal if user presses Spacebar
+  $scope.closeModalKeyDown = (value) => {
+    if (value.keyCode === 32) {
+      $scope.closeInfoModal();
+    }
+  };
+
   // update match array with newly found word
   function updateMatches(wordToCheck, newWord, matchWords) {
     for (let i = 0; i < 4; i++) {
