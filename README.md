@@ -1,4 +1,4 @@
-# ![Edit-Distance-Calculator](https://github.com/efournier92/edit-distance-calculator/blob/master/public/img/logo/edit-distance-calculator_Logo.png?raw=true)
+# ![Edit-Distance-Calculator](https://raw.githubusercontent.com/efournier92/edit-distance-calculator/master/public/img/logo/edit-distance-calculator_Logo.png)
 
 ## Contents
 - [Overview](#overview)
