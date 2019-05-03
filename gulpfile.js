@@ -44,19 +44,21 @@ gulp.task('browser-sync', function () {
 
 // Static server
 gulp.task('browser-sync', function() {
-    browserSync.init({
-        server: {
-            baseDir: "./"
-        }
-    });
+  browserSync.init({
+    server: {
+      baseDir: "./"
+    }
+  });
 });
 
 
 // Watch Files For Changes
 gulp.task('watch', function () {
-  gulp.watch('./app_client/*.js', ['transpile-es6']);
+  gulp.watch('./app_client/*.js').on('change', function() {
+    'transpile-es6'
+  });
 });
 
 // Default Task
-gulp.task('default', ['transpile-es6', 'watch']);
+gulp.task('default', gulp.parallel('transpile-es6', 'watch'));
 
